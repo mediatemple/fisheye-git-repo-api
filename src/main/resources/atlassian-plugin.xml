@@ -1,0 +1,24 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+    </plugin-info>
+
+    <web-item key="config-link" section="system.admin/global">
+        <link>/plugins/servlet/repo-api/config</link>
+        <label key="Repo API Config"/>
+    </web-item>
+
+    <servlet name="${project.artifactId}" class="net.mediatemple.fisheye.RepoAPI" key="repo-api">
+        <description>Git Repo API</description>
+        <url-pattern>/repo-api/*</url-pattern>
+    </servlet>
+    <servlet name="${project.artifactId}" class="net.mediatemple.fisheye.RepoAPIConfig" key="repo-api-config">
+        <description>Git Repo API</description>
+        <url-pattern>/repo-api/config</url-pattern>
+    </servlet>
+
+    <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
+    <component-import key="velocity-renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer" />
+</atlassian-plugin>
