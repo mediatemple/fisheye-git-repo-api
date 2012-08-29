@@ -1,5 +1,5 @@
 <form accept-charset="UTF-8" method="post" action="config">
-    <h2>Repo API Configuration</h2>
+    <h2>Git Repo API Configuration</h2>
     <div>
         <label>Private SSH Key</label>
         <p class="description">This is the private key that will be used to access git repositories.</p>

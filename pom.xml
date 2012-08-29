@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.mediatemple.fisheye</groupId>
-    <artifactId>repoapi</artifactId>
+    <artifactId>git-repo-api</artifactId>
     <version>1.0</version>
 
     <organization>

@@ -13,21 +13,21 @@ import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.templaterenderer.TemplateRenderer;
 
-public class RepoAPIConfig extends HttpServlet {
+public class GitRepoAPIConfig extends HttpServlet {
 
     private final PluginSettingsFactory settingsFactory;
     private final TemplateRenderer templateRenderer;
 
     private static final Logger LOG = LoggerFactory.getLogger("atlassian.plugin");
 
-    public RepoAPIConfig(PluginSettingsFactory settingsFactory, TemplateRenderer templateRenderer) {
+    public GitRepoAPIConfig(PluginSettingsFactory settingsFactory, TemplateRenderer templateRenderer) {
         this.settingsFactory  = settingsFactory;
         this.templateRenderer = templateRenderer;
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PluginSettings settings = settingsFactory.createGlobalSettings();
-        String privateKey = (String) settings.get("net.mediatemple.fisheye.repoapi.privatekey");
+        String privateKey = (String) settings.get("net.mediatemple.fisheye.gitrepoapi.privatekey");
 
         if (privateKey == null) {
             privateKey = "";
@@ -40,7 +40,7 @@ public class RepoAPIConfig extends HttpServlet {
         String privateKey = request.getParameter("private_key");
 
         PluginSettings settings = settingsFactory.createGlobalSettings();
-        settings.put("net.mediatemple.fisheye.repoapi.privatekey", privateKey);
+        settings.put("net.mediatemple.fisheye.gitrepoapi.privatekey", privateKey);
 
         renderPage(request, response, privateKey);
     }

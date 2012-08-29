@@ -19,12 +19,12 @@ import com.atlassian.fisheye.spi.admin.services.RepositoryIndexer;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 
-public class RepoAPI extends HttpServlet {
+public class GitRepoAPI extends HttpServlet {
     private final RepositoryAdminService repositoryAdminService;
     private final PluginSettingsFactory settingsFactory;
     private static final Logger LOG = LoggerFactory.getLogger("atlassian.plugin");
 
-    public RepoAPI(PluginSettingsFactory settingsFactory, RepositoryAdminService repositoryAdminService) {
+    public GitRepoAPI(PluginSettingsFactory settingsFactory, RepositoryAdminService repositoryAdminService) {
         this.settingsFactory  = settingsFactory;
         this.repositoryAdminService = repositoryAdminService;
     }
@@ -44,7 +44,7 @@ public class RepoAPI extends HttpServlet {
 
     private void doCreateUpdateRepository(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PluginSettings settings = settingsFactory.createGlobalSettings();
-        String pkey = (String) settings.get("net.mediatemple.fisheye.repoapi.privatekey");
+        String pkey = (String) settings.get("net.mediatemple.fisheye.gitrepoapi.privatekey");
 
         if (pkey == null) {
             pkey = "";
