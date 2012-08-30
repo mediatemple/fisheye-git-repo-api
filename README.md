@@ -39,6 +39,8 @@ Atlas Plugin SDK Documentation
 
 * [Introduction](https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugin+SDK)
 * [Maven Repositories](https://developer.atlassian.com/display/DOCS/Atlassian+Maven+Repositories)
+* [Atlassian Template Renderer](https://developer.atlassian.com/display/ATR/Atlassian+Template+Renderer)
+* [Shared Access Layer](https://developer.atlassian.com/display/SAL/Shared+Access+Layer+Documentation)
 
 FishEye and Crucible Plugin Tutorials
 
