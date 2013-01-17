@@ -1,3 +1,42 @@
+# Overview
+
+This is a plugin for Fisheye/Crucible that provides an API for creating/indexing and deleting git repositories.
+
+# Usage
+
+To use it:
+
+1. Build the jar (a built version is included in this git repo)
+1. Add it to Fisheye/Crucible
+1. Populate the git private key in the `Git Repo API Config` section in the admin interface.
+1. Use the URLs below to interact with the API.
+
+## Adding/indexing a git repository
+
+This will add the repository if not present and then initiate an indexing run.  If the repository already exists, only the indexing will be started.
+
+    $ curl https://fish.domain/plugins/servlet/git-repo-api/update?url=ssh://git.domain/repo.git&name=repo-name
+
+## Deleting a git repository
+
+This will delete the git repository.
+
+    $ curl https://fish.domain/plugins/servlet/git-repo-api/delete?name=repo-name
+
+## Return information
+
+If the action is successful, a json response similar to the following will be returned:
+
+    {
+      "response": "create/update successful"
+    }
+
+If it fails, a json response similar to the following will be returned:
+
+    {
+      "error": "delete failed, repo refused to stop"
+    }
+
 # Developing 
 
 ## Getting started
