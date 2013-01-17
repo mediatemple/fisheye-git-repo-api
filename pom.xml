@@ -79,7 +79,7 @@
     </build>
 
     <properties>
-        <fecru.version>2.7.13-20120517072828</fecru.version>
+        <fecru.version>2.9.2-20121210041242</fecru.version>
         <fecru.data.version>2.5.2-20110307050326</fecru.data.version>
         <amps.version>3.11</amps.version>
     </properties>
