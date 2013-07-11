@@ -124,6 +124,44 @@ public class GitRepoAPI extends HttpServlet implements PluginIdAware {
                         }
                     }
 
+                    else {
+                        LOG.info("updating existing repository");
+                        try {
+                            LOG.debug("going to update repositorydata");
+                            GitRepositoryData repoData = (GitRepositoryData)repositoryAdminService.getRepositoryData(repositoryName);
+                            repoData.setLocation(repositoryUrl);
+
+                            LOG.debug("going to update authentication");
+                            AuthenticationData authentication = new AuthenticationData();
+                            authentication.setAuthenticationStyle(AuthenticationStyle.NONE);
+                            repoData.setAuthentication(authentication);
+
+                            LOG.info("Updating repo " + repositoryName);
+                            repositoryAdminService.update(repoData);
+
+                            LOG.info("Disabling polling for " + repositoryName);
+                            repositoryAdminService.disablePolling(repositoryName);
+
+                            if (!repositoryAdminService.isEnabled(repositoryName)) {
+                                LOG.info("Enabling repo " + repositoryName);
+                                repositoryAdminService.enable(repositoryName);
+                            }
+
+                            if (repositoryAdminService.getState(repositoryName) == RepositoryState.STOPPED) {
+                                LOG.info("Starting repo " + repositoryName);
+                                repositoryAdminService.start(repositoryName);
+                            }
+
+                            //state = repositoryAdminService.getState(repositoryName);
+                            //LOG.error("after start, state is " + state);
+
+                        } catch (Exception e) {
+                            LOG.error(e.toString());
+                            sendError(response, "create failed, see logs for details");
+                            return Boolean.FALSE;
+                        }
+                    }
+
                     LOG.info("Starting indexing on repo " + repositoryName);
                     RepositoryIndexer indexer = repositoryAdminService.getIndexer(repositoryName);
                     //logIndexingStatus(indexer);
