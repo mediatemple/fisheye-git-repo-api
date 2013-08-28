@@ -74,8 +74,8 @@ public class GitRepoAPI extends HttpServlet implements PluginIdAware {
             sendError(response, "The 'url' parameter is required.");
             return;
         }
-        if (!repositoryUrl.matches("ssh://[a-zA-Z0-9]+@[a-z0-9\\.]+/[a-zA-Z0-9\\-_\\/\\.]+\\.git$")) {
-            sendError(response, "Repository url must match 'ssh://[a-zA-Z0-9]+@[a-z0-9\\\\.]+/[a-zA-Z0-9\\\\-_\\\\/\\\\.]+\\\\.git$', e.g. ssh://git@git.host.name/path/to/repo.git");
+        if (!repositoryUrl.matches("ssh://[a-zA-Z0-9]+@[a-z0-9\\.]+(:[0-9]+)?/[a-zA-Z0-9\\-_\\/\\.]+\\.git$")) {
+            sendError(response, "Repository url must match 'ssh://[a-zA-Z0-9]+@[a-z0-9\\\\.]+(:[0-9]+)?/[a-zA-Z0-9\\\\-_\\\\/\\\\.]+\\\\.git$', e.g. ssh://git@git.host.name/path/to/repo.git");
             return;
         }
 
